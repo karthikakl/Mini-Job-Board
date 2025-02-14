@@ -1,13 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
-export async function GET(req: NextRequest, context: { params: { id: string } }) {
+type Props = {
+  params: {
+    id: string;
+  };
+};
+
+export async function GET(req: NextRequest, { params }: Props) {
   try {
-    const jobId = context.params.id; // Access params correctly
+    const jobId = params.id;
+
+    if (!jobId) {
+      return NextResponse.json({ message: "Invalid jobId" }, { status: 400 });
+    }
 
     const applications = await prisma.application.findMany({
       where: { jobId },
-      include: { job: true }, // Include job details if needed
+      include: { job: true },
     });
 
     return NextResponse.json(applications);
