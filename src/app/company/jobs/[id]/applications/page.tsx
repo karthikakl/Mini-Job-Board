@@ -1,4 +1,4 @@
-"use client"; //  Marked as client component
+"use client"; 
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";

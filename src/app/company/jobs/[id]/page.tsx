@@ -1,8 +1,9 @@
-"use client"
+"use client";
 
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
 
 type Application = {
   id: string;
@@ -13,12 +14,19 @@ type Application = {
   appliedAt: string;
 };
 
+type Job = {
+  id: string;
+  title: string;
+  description: string;
+  
+};
+
 export default function ApplicationJobs() {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const router = useRouter();
   const [applications, setApplications] = useState<Application[]>([]);
   const [loading, setLoading] = useState(true);
-  const [job, setJob] = useState<any | null>(null);
+  const [job, setJob] = useState<Job | null>(null); 
 
   // Fetching the job details
   useEffect(() => {
@@ -75,7 +83,7 @@ export default function ApplicationJobs() {
       });
 
       if (deleteRes.ok) {
-        router.push("/jobs"); 
+        router.push("/jobs");
       } else {
         console.error("Error deleting job");
       }
@@ -84,7 +92,7 @@ export default function ApplicationJobs() {
     }
   };
 
-  // For handling editing the job 
+  // For handling editing the job
   const handleEditJob = () => {
     router.push(`/jobs/${id}/edit`);
   };
@@ -105,8 +113,7 @@ export default function ApplicationJobs() {
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6">
       <h1 className="text-4xl font-bold mb-8 text-center">{job.title}</h1>
-      
-      
+
       <div className="text-center mb-6">
         <button
           className="bg-blue-500 text-white p-2 rounded-md mr-4 hover:bg-blue-700"
@@ -152,7 +159,7 @@ export default function ApplicationJobs() {
                   <p>
                     <strong>Applied At:</strong> {new Date(application.appliedAt).toLocaleString()}
                   </p>
-                  
+
                   <button
                     onClick={() => handleViewApplication(application.id)}
                     className="bg-green-500 text-white p-2 rounded-md mt-4 hover:bg-green-700"

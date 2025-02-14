@@ -16,6 +16,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
 
     return NextResponse.json(job);
   } catch (error) {
+    console.error("Error deleting job:", error);
     return NextResponse.json({ message: "Error fetching job details" }, { status: 500 });
   }
 }
@@ -24,7 +25,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
 // PUT: Update job details
 export async function PUT(req: Request, { params }: { params: { id: string } }) {
   try {
-    const data = await req.json(); // Get updated data from request body
+    const data = await req.json(); 
     const {applications,...updatedData} = data
     const updatedJob = await prisma.job.update({
       where: { id: params.id },
@@ -33,7 +34,7 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
 
     return NextResponse.json(updatedJob);
   } catch (error) {
-    console.error("Error updating job:", error);  // Log the error
+    console.error("Error updating job:", error);  
     return NextResponse.json({ message: "Error updating job" }, { status: 500 });
   }
 }
@@ -48,6 +49,7 @@ export async function DELETE(req: Request, { params }: { params: { id: string } 
 
     return NextResponse.json({ message: "Job deleted successfully" });
   } catch (error) {
+    console.error("Error deleting job:", error);
     return NextResponse.json({ message: "Error deleting job" }, { status: 500 });
   }
 }
