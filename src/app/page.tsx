@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Link from "next/link"; // Import Link
 
 export default function Home() {
   return (
@@ -11,30 +11,18 @@ export default function Home() {
           </div>
 
           <nav className="space-x-8">
-          <a
-              href="/candidate"
-              className="text-sm text-cyan-100 sm:text-lg hover:underline"
-            >
-              Careers
-            </a>
-            <a
-              href="/"
-              className="text-sm text-cyan-100 sm:text-lg hover:underline"
-            >
-              Services
-            </a>
-            <a
-              href=""
-              className="text-sm text-cyan-100 sm:text-lg hover:underline"
-            >
-              About Us
-            </a>
-            <a
-              href=""
-              className="text-sm sm:text-lg text-cyan-100 hover:underline"
-            >
-              Contact Us
-            </a>
+            <Link href="/candidate">
+              <a className="text-sm text-cyan-100 sm:text-lg hover:underline">Careers</a>
+            </Link>
+            <Link href="/">
+              <a className="text-sm text-cyan-100 sm:text-lg hover:underline">Services</a>
+            </Link>
+            <Link href="/">
+              <a className="text-sm text-cyan-100 sm:text-lg hover:underline">About Us</a>
+            </Link>
+            <Link href="/">
+              <a className="text-sm sm:text-lg text-cyan-100 hover:underline">Contact Us</a>
+            </Link>
           </nav>
         </div>
       </header>
@@ -44,10 +32,10 @@ export default function Home() {
         <div className="text-center px-8 max-w-4xl">
           {/* Slogan and Message Section */}
           <h1 className="text-4xl sm:text-5xl font-bold text-white">
-          Your Future Begins Here
+            Your Future Begins Here
           </h1>
           <p className="mt-4 text-lg text-cyan-100">
-          A world of endless possibilities is waiting for you. Don’t wait for the perfect moment—create it!.
+            A world of endless possibilities is waiting for you. Don’t wait for the perfect moment—create it!.
           </p>
         </div>
       </main>
@@ -57,15 +45,15 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <p>&copy; 2025 JobBoard, All Rights Reserved.</p>
           <div className="mt-4">
-            <a href="/" className="mx-2 hover:underline">
-              Privacy
-            </a>
-            <a href="/" className="mx-2 hover:underline">
-              Terms
-            </a>
-            <a href="/" className="mx-2 hover:underline">
-              Contact
-            </a>
+            <Link href="/">
+              <a className="mx-2 hover:underline">Privacy</a>
+            </Link>
+            <Link href="/">
+              <a className="mx-2 hover:underline">Terms</a>
+            </Link>
+            <Link href="/">
+              <a className="mx-2 hover:underline">Contact</a>
+            </Link>
           </div>
         </div>
       </footer>

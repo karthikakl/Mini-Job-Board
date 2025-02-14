@@ -11,6 +11,7 @@ export async function GET() {
     
     return NextResponse.json(jobs);
   } catch (error) {
+    console.error("Error getting job details", error);
     return NextResponse.json({ message: "Error fetching jobs" }, { status: 500 });
   }
 }
@@ -32,6 +33,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ message: "Job posted successfully", newJob }, { status: 201 });
   } catch (error) {
+    console.error("Error posting job:", error);
     return NextResponse.json({ message: "Error posting job" }, { status: 500 });
   }
 }

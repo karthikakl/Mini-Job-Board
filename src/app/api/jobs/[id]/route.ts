@@ -16,7 +16,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
 
     return NextResponse.json(job);
   } catch (error) {
-    console.error("Error deleting job:", error);
+    console.error("Error getting job details:", error);
     return NextResponse.json({ message: "Error fetching job details" }, { status: 500 });
   }
 }
@@ -26,7 +26,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
 export async function PUT(req: Request, { params }: { params: { id: string } }) {
   try {
     const data = await req.json(); 
-    const {applications,...updatedData} = data
+    const {applications: _applications,...updatedData} = data
     const updatedJob = await prisma.job.update({
       where: { id: params.id },
       data:updatedData,
