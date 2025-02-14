@@ -2,11 +2,13 @@ import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
 // GET: Fetch job details by ID
-
 export async function GET(req: Request, { params }: { params: { id: string } }) {
   try {
+    // Correctly access params directly
+    const { id } = params;
+
     const job = await prisma.job.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: { applications: true },
     });
 
@@ -21,31 +23,34 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
   }
 }
 
-
 // PUT: Update job details
 export async function PUT(req: Request, { params }: { params: { id: string } }) {
   try {
     const data = await req.json();
-    const updatedData = { ...data }; // Creating a copy
-    delete updatedData.applications; // Removing applications from the copy
+    const updatedData = { ...data };
+    delete updatedData.applications;
+
+    const { id } = params;
 
     const updatedJob = await prisma.job.update({
-      where: { id: params.id },
+      where: { id },
       data: updatedData,
     });
 
     return NextResponse.json(updatedJob);
   } catch (error) {
-    console.error('error updating ',error)
+    console.error("Error updating job:", error);
+    return NextResponse.json({ message: "Error updating job" }, { status: 500 });
   }
 }
-
 
 // DELETE: Remove a job by ID
 export async function DELETE(req: Request, { params }: { params: { id: string } }) {
   try {
+    const { id } = params;
+
     await prisma.job.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return NextResponse.json({ message: "Job deleted successfully" });

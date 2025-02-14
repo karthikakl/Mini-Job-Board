@@ -1,13 +1,13 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
 // GET: Fetch applications for a specific job
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const jobId = params.id; // The job ID is captured from the URL
+    const jobId = params.id; // Get job ID from params
 
     const applications = await prisma.application.findMany({
-      where: { jobId: jobId },
+      where: { jobId },
       include: { job: true },  // Optional: Include job details if needed
     });
 
