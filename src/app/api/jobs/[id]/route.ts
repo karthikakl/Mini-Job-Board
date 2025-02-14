@@ -36,7 +36,7 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
 
     return NextResponse.json(updatedJob);
   } catch (error) {
-    // ... error handling
+    console.error('error updating ',error)
   }
 }
 
