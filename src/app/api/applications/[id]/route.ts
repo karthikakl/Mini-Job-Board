@@ -7,9 +7,10 @@ type Props = {
   };
 };
 
-export async function GET(req: NextRequest, { params }: Props) {
+export async function GET(request: NextRequest, props: Props) {
   try {
-    const jobId = params.id;
+   
+    const jobId = props.params.id;
 
     if (!jobId) {
       return NextResponse.json({ message: "Invalid jobId" }, { status: 400 });

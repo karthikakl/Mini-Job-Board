@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
-
 type Props = {
   params: {
     id: string;
@@ -9,9 +8,13 @@ type Props = {
 };
 
 // GET: Fetch job details by ID
-export async function GET(req: NextRequest, { params }: Props) {
+export async function GET(request: NextRequest, props: Props) {
   try {
-    const { id } = params; 
+    const { id } = props.params;
+
+    if (!id) {
+      return NextResponse.json({ message: "Invalid job ID" }, { status: 400 });
+    }
 
     const job = await prisma.job.findUnique({
       where: { id },
@@ -30,13 +33,17 @@ export async function GET(req: NextRequest, { params }: Props) {
 }
 
 // PUT: Update job details
-export async function PUT(req: NextRequest, { params }: Props) {
+export async function PUT(request: NextRequest, props: Props) {
   try {
-    const data = await req.json();
+    const data = await request.json();
     const updatedData = { ...data };
     delete updatedData.applications;
 
-    const { id } = params; 
+    const { id } = props.params;
+
+    if (!id) {
+      return NextResponse.json({ message: "Invalid job ID" }, { status: 400 });
+    }
 
     const updatedJob = await prisma.job.update({
       where: { id },
@@ -51,9 +58,13 @@ export async function PUT(req: NextRequest, { params }: Props) {
 }
 
 // DELETE: Remove a job by ID
-export async function DELETE(req: NextRequest, { params }: Props) {
+export async function DELETE(request: NextRequest, props: Props) {
   try {
-    const { id } = params; 
+    const { id } = props.params;
+
+    if (!id) {
+      return NextResponse.json({ message: "Invalid job ID" }, { status: 400 });
+    }
 
     await prisma.job.delete({
       where: { id },
