@@ -1,4 +1,4 @@
-"use client"; // ✅ Mark as client component
+"use client"; //  Marked as client component
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface Job {
   id: string;
-  title: string; // Add the name property to the Job interface
+  title: string; 
 }
 
 type Application = {
@@ -19,12 +19,12 @@ type Application = {
 };
 
 export default function ApplicationJobs() {
-  const { id: jobId } = useParams(); // Rename id to jobId for clarity
+  const { id: jobId } = useParams(); 
   const [applications, setApplications] = useState<Application[]>([]);
   const [loading, setLoading] = useState(true);
-  const [job, setJob] = useState<Job | null>(null); // Store job data
+  const [job, setJob] = useState<Job | null>(null); 
 
-  // Fetch the job details using jobId
+  // Fetching the job details using jobId
   useEffect(() => {
     if (!jobId) return;
 
@@ -33,7 +33,7 @@ export default function ApplicationJobs() {
         const jobRes = await fetch(`/api/jobs/${jobId}`);
         if (jobRes.ok) {
           const jobData = await jobRes.json();
-          setJob(jobData); // Store the job data (including job name)
+          setJob(jobData);
         } else {
           console.error("Error fetching job:", jobRes.status, jobRes.statusText);
           setJob(null);
@@ -47,7 +47,7 @@ export default function ApplicationJobs() {
     fetchJob();
   }, [jobId]);
 
-  // Fetch applications for the given jobId
+  // Fetching applications for the given jobId
   useEffect(() => {
     if (!jobId) return;
 
@@ -79,7 +79,7 @@ export default function ApplicationJobs() {
       ) : (
         <>
           <h1 className="text-3xl font-bold mb-6">
-            Applicants for {job ? job.title : "Job"} {/* Display the job name */}
+            Applicants for {job ? job.title : "Job"}
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
             {applications.map((application) => (

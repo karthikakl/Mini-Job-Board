@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,13 +14,13 @@ type Application = {
 };
 
 export default function ApplicationJobs() {
-  const { id } = useParams(); // This is the selected job ID
+  const { id } = useParams(); 
   const router = useRouter();
   const [applications, setApplications] = useState<Application[]>([]);
   const [loading, setLoading] = useState(true);
   const [job, setJob] = useState<any | null>(null);
 
-  // Fetch job details
+  // Fetching the job details
   useEffect(() => {
     if (!id) return;
 
@@ -41,13 +43,13 @@ export default function ApplicationJobs() {
     fetchJob();
   }, [id]);
 
-  // Fetch applications related to the job
+  // Fetching the applications related to the job
   useEffect(() => {
     if (!id) return;
 
     const fetchApplications = async () => {
       try {
-        const res = await fetch(`/api/application/${id}`); // Fetch applications for this job only
+        const res = await fetch(`/api/application/${id}`);
         if (res.ok) {
           const data: Application[] = await res.json();
           setApplications(data);
@@ -65,7 +67,7 @@ export default function ApplicationJobs() {
     fetchApplications();
   }, [id]);
 
-  // Handle deleting the job
+  // For handling deleting the job
   const handleDeleteJob = async () => {
     try {
       const deleteRes = await fetch(`/api/jobs/${id}`, {
@@ -73,7 +75,7 @@ export default function ApplicationJobs() {
       });
 
       if (deleteRes.ok) {
-        router.push("/jobs"); // Redirect to jobs list after successful deletion
+        router.push("/jobs"); 
       } else {
         console.error("Error deleting job");
       }
@@ -82,12 +84,12 @@ export default function ApplicationJobs() {
     }
   };
 
-  // Handle editing the job (navigate to the edit page)
+  // For handling editing the job 
   const handleEditJob = () => {
     router.push(`/jobs/${id}/edit`);
   };
 
-  // Handle viewing an application
+  // For viewing an application
   const handleViewApplication = (applicationId: string) => {
     router.push(`/applications/${applicationId}`);
   };
@@ -104,7 +106,7 @@ export default function ApplicationJobs() {
     <div className="min-h-screen bg-gray-900 text-white p-6">
       <h1 className="text-4xl font-bold mb-8 text-center">{job.title}</h1>
       
-      {/* Job Actions: Edit & Delete */}
+      
       <div className="text-center mb-6">
         <button
           className="bg-blue-500 text-white p-2 rounded-md mr-4 hover:bg-blue-700"
@@ -150,7 +152,7 @@ export default function ApplicationJobs() {
                   <p>
                     <strong>Applied At:</strong> {new Date(application.appliedAt).toLocaleString()}
                   </p>
-                  {/* View Application Button */}
+                  
                   <button
                     onClick={() => handleViewApplication(application.id)}
                     className="bg-green-500 text-white p-2 rounded-md mt-4 hover:bg-green-700"

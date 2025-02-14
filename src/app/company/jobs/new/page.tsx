@@ -1,14 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation"; // Import useRouter
+import { useRouter } from "next/navigation"; 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function NewJobs() {
-  const router = useRouter(); // Initialize router
+  const router = useRouter(); 
   const [jobData, setJobData] = useState({
     title: "",
     location: "",
@@ -38,7 +38,7 @@ export default function NewJobs() {
       alert("Job posted successfully!");
       setJobData({ title: "", salary: "", location: "", description: "", skill: "" });
 
-      // Redirect to jobs page after success
+      
       router.push("/company/jobs/");
     } catch (error) {
       console.error(error);

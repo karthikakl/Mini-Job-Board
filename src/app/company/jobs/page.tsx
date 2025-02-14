@@ -1,4 +1,4 @@
-"use client"; // Mark as a client component
+"use client"; 
 
 import Link from "next/link"; 
 import { useState, useEffect } from "react";
@@ -9,9 +9,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import CompanyHeader from "@/components/companyHeader";
 
-// Define Job type
+
 type Job = {
-  id: string; // Ensure the ID is a string if your API expects a UUID
+  id: string; 
   title: string;
   location: string;
   description: string;
@@ -44,7 +44,7 @@ export default function JobsCompany() {
     fetchJobs();
   }, []);
 
-  // Handle job deletion
+  // Handling job deletion
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this job?")) return;
     try {
@@ -57,19 +57,19 @@ export default function JobsCompany() {
     }
   };
 
-  // Handle edit button click - Open modal
+  // Handling the edit button click - Open modal
   const handleEditClick = (job: Job) => {
     setSelectedJob(job);
     setIsEditOpen(true);
   };
 
-  // Handle input change
+  // Handling the input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (!selectedJob) return;
     setSelectedJob({ ...selectedJob, [e.target.name]: e.target.value });
   };
 
-  // Handle job update
+  // Handling job update
   const handleUpdate = async () => {
     if (!selectedJob) return;
     try {

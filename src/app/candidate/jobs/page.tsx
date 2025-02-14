@@ -1,4 +1,4 @@
-"use client"; // Mark as a client component
+"use client"; 
 
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -47,7 +47,7 @@ export default function JobsCompany() {
   return (
     <Layout>
     <div className="min-h-screen bg-black text-white flex flex-col items-center p-6">
-      {/* Header Section with Search Bar */}
+      
       <div className="w-full max-w-5xl mb-6">
         <h1 className="text-3xl font-bold text-center mb-4">Company Job Listings</h1>
         <div className="flex justify-center">

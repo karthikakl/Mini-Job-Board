@@ -3,13 +3,13 @@ import Link from "next/link";
 export default function JobsCompany() {
   return (
     <div className="min-h-screen bg-gradient-to-b  to-gray-900 text-white flex flex-col items-center justify-center p-6">
-      {/* Page Heading */}
+      
       <h1 className="text-4xl font-bold mb-4">Welcome to the Company Hub</h1>
       <p className="text-lg text-gray-300 mb-6 text-center max-w-xl">
         Connect with top talent and build your dream team. Post jobs, review applications, and find the best fit for your company.
       </p>
 
-      {/* Company Features Section */}
+      
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
         <div className="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
           <h2 className="text-xl font-semibold mb-2">View Existing Jobs</h2>

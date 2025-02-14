@@ -1,21 +1,21 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useParams, useRouter } from "next/navigation"; // Use useRouter to handle redirection
+import { useParams, useRouter } from "next/navigation"; 
 import Layout from "@/components/ui/Layout";
 
-// Define the structure of the job object
+
 interface Job {
   title: string;
   description: string;
-  // Add other properties you expect in the job object
+ 
 }
 
 export default function ApplyJob() {
-  const { id  } = useParams();  // Extract jobId from URL
+  const { id  } = useParams();  
   console.log('Job id from the URL:',id )
-  const router = useRouter();  // Get the Next.js router
-  const [job, setJob] = useState<Job | null>(null); // Explicitly type job as Job or null
+  const router = useRouter();  
+  const [job, setJob] = useState<Job | null>(null); 
   const [loading, setLoading] = useState(true);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -26,7 +26,7 @@ export default function ApplyJob() {
     const fetchJobDetails = async () => {
       try {
         const res = await fetch(`/api/jobs/${id}`);
-        const jobData: Job = await res.json();  // Type the job data here as well
+        const jobData: Job = await res.json();  
         console.log('Fetched Job Data:',jobData)
         setJob(jobData);
       } catch (error) {
@@ -60,7 +60,7 @@ export default function ApplyJob() {
 
     if (res.ok) {
       alert("Application submitted successfully!");
-      router.push("/candidate/jobs");  // Redirect after successful application submission
+      router.push("/candidate/jobs");  
     } else {
       alert("Error submitting application.");
     }
