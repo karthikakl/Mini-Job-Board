@@ -25,17 +25,18 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
 // PUT: Update job details
 export async function PUT(req: Request, { params }: { params: { id: string } }) {
   try {
-    const data = await req.json(); 
-    const {applications: _applications,...updatedData} = data
+    const data = await req.json();
+    const updatedData = { ...data }; // Creating a copy
+    delete updatedData.applications; // Removing applications from the copy
+
     const updatedJob = await prisma.job.update({
       where: { id: params.id },
-      data:updatedData,
+      data: updatedData,
     });
 
     return NextResponse.json(updatedJob);
   } catch (error) {
-    console.error("Error updating job:", error);  
-    return NextResponse.json({ message: "Error updating job" }, { status: 500 });
+    // ... error handling
   }
 }
 

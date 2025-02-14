@@ -11,17 +11,17 @@ export default function Home() {
           </div>
 
           <nav className="space-x-8">
-            <Link href="/candidate">
-              <a className="text-sm text-cyan-100 sm:text-lg hover:underline">Careers</a>
+            <Link href="/candidate" className="text-sm text-cyan-100 sm:text-lg hover:underline">
+              Careers
             </Link>
-            <Link href="/">
-              <a className="text-sm text-cyan-100 sm:text-lg hover:underline">Services</a>
+            <Link href="/" className="text-sm text-cyan-100 sm:text-lg hover:underline">
+              Services
             </Link>
-            <Link href="/">
-              <a className="text-sm text-cyan-100 sm:text-lg hover:underline">About Us</a>
+            <Link href="/" className="text-sm text-cyan-100 sm:text-lg hover:underline">
+              About Us
             </Link>
-            <Link href="/">
-              <a className="text-sm sm:text-lg text-cyan-100 hover:underline">Contact Us</a>
+            <Link href="/" className="text-sm sm:text-lg text-cyan-100 hover:underline">
+              Contact Us
             </Link>
           </nav>
         </div>
@@ -35,7 +35,7 @@ export default function Home() {
             Your Future Begins Here
           </h1>
           <p className="mt-4 text-lg text-cyan-100">
-            A world of endless possibilities is waiting for you. Don’t wait for the perfect moment—create it!.
+            A world of endless possibilities is waiting for you. Don’t wait for the perfect moment—create it!
           </p>
         </div>
       </main>
@@ -45,14 +45,14 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <p>&copy; 2025 JobBoard, All Rights Reserved.</p>
           <div className="mt-4">
-            <Link href="/">
-              <a className="mx-2 hover:underline">Privacy</a>
+            <Link href="/" className="mx-2 hover:underline">
+              Privacy
             </Link>
-            <Link href="/">
-              <a className="mx-2 hover:underline">Terms</a>
+            <Link href="/" className="mx-2 hover:underline">
+              Terms
             </Link>
-            <Link href="/">
-              <a className="mx-2 hover:underline">Contact</a>
+            <Link href="/" className="mx-2 hover:underline">
+              Contact
             </Link>
           </div>
         </div>
